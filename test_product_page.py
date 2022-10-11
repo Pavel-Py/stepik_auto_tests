@@ -16,6 +16,7 @@ class TestUserAddToBasketFromProductPage:
         page.open()
         page.register_new_user(email, password)
 
+    @pytest.mark.xfail
     def test_user_cant_see_success_message(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
         page = ProductPage(browser, link)
@@ -23,6 +24,7 @@ class TestUserAddToBasketFromProductPage:
         page.add_product_to_basket()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1'
         page = ProductPage(browser, link)
@@ -32,6 +34,7 @@ class TestUserAddToBasketFromProductPage:
         page.compare_prod_price_and_basket_message_price()
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize(
     'offer_num',
     [pytest.param(i, marks=pytest.mark.xfail(i == 7, reason='bug')) for i in range(10)]
@@ -45,6 +48,7 @@ def test_guest_can_add_product_to_basket(browser, offer_num):
     page.compare_prod_price_and_basket_message_price()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/'
     page = ProductPage(browser, link)
@@ -54,6 +58,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page.should_be_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = MainPage(browser, link)
