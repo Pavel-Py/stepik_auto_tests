@@ -94,7 +94,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
 
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
-    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1'
     page = ProductPage(browser, link)
     page.open()
     page.add_product_to_basket()
